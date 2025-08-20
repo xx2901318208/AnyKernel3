@@ -53,8 +53,8 @@ else
 fi
 ## end boot install
 # 优先选择模块路径
-if [ -f "$AKHOME/zram.zip" ]; then
-    MODULE_PATH="$AKHOME/zram.zip"
+if [ -f "$AKHOME/ZRAM-Module.zip" ]; then
+    MODULE_PATH="$AKHOME/ZRAM-Module.zip"
     KSUD_PATH="/data/adb/ksud"
     if [ -f "$KSUD_PATH" ]; then
         ui_print "Installing zram Module..."
@@ -64,5 +64,5 @@ if [ -f "$AKHOME/zram.zip" ]; then
         ui_print "KSUD Not Found, skipping installation..."
     fi
 else
-    ui_print "ZRAM module Not Found, skipping ZRAM module installation"
+    ui_print "ZRAM-Module module Not Found, skipping ZRAM-Module module installation"
 fi
