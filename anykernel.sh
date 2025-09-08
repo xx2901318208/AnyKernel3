@@ -53,8 +53,8 @@ else
 fi
 ## end boot install
 # 优先选择模块路径
-if [ -f "$AKHOME/ZRAM-Module.zip" ]; then
-    MODULE_PATH="$AKHOME/ZRAM-Module.zip"
+if [ -f "$AKHOME/ZRAM.zip" ]; then
+    MODULE_PATH="$AKHOME/ZRAM.zip"
     KSUD_PATH="/data/adb/ksud"
     if [ -f "$KSUD_PATH" ]; then
         ui_print "Installing zram Module..."
