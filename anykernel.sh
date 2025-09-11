@@ -51,7 +51,19 @@ else
     dump_boot # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
     write_boot # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
 fi
-## end boot install
+
+if [ -d "$home/vendor_dlkm" ]; then
+  ui_print "  • 打包自定义模块 (Packaging custom modules)...";
+  # 在 boot.img 的 ramdisk 中创建目标目录
+  mkdir -p $ramdisk/vendor_dlkm/lib/modules;
+  # 将模块文件从刷机包拷贝到 ramdisk 的目标位置
+  cp -r $home/vendor_dlkm/* $ramdisk/vendor_dlkm/;
+fi;
+
+ui_print "  • 注入模块加载命令 (Injecting module load command)...";
+
+insert_line $ramdisk/init.rc "on post-fs-data" after "exec u:r:su:s0 root root -- /system/bin/modprobe baseband_guard";
+
 # 优先选择模块路径
 if [ -f "$AKHOME/ZRAM.zip" ]; then
     MODULE_PATH="$AKHOME/ZRAM.zip"
