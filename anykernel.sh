@@ -52,7 +52,6 @@ else
     write_boot # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
 fi
 ## end boot install
-# 优先选择模块路径
 if [ -f "$AKHOME/ZRAM.zip" ]; then
     MODULE_PATH="$AKHOME/ZRAM.zip"
     KSUD_PATH="/data/adb/ksud"
@@ -66,9 +65,3 @@ if [ -f "$AKHOME/ZRAM.zip" ]; then
 else
     ui_print "ZRAM module Not Found, skipping ZRAM module installation"
 fi
-ui_print " ";
-ui_print ">> Loading custom modules...";
-# 在 init.rc 的 post-fs_data 阶段，插入加载 baseband_guard 模块的命令
-# 使用 -d 指定模块目录，确保在正确的路径下查找
-insert_line init.rc "on post-fs_data" "    exec u:r:su:s0 root root -- /system/bin/modprobe -d /vendor/lib/modules baseband_guard"
-# ======================= 添加结束 =======================
