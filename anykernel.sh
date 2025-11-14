@@ -52,8 +52,8 @@ else
     write_boot # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
 fi
 ## end boot install
-if [ -f "$AKHOME/ZRAM.zip" ]; then
-    MODULE_PATH="$AKHOME/ZRAM.zip"
+if [ -f "$AKHOME/zram.zip" ]; then
+    MODULE_PATH="$AKHOME/zram.zip"
     KSUD_PATH="/data/adb/ksud"
     if [ -f "$KSUD_PATH" ]; then
         ui_print "Installing ZRAM Module..."
